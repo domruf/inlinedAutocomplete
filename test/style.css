@@ -20,17 +20,6 @@ html {
     border-radius: 5px;
 }
 
-#iframecontainer, #editablecontainer {
-    background: white;
-    border-radius: 5px;
-    border: 1px solid;
-    padding: 12px;
-}
-
-iframe {
-    border: none;
-}
-
 .text_area:focus {
     outline: none;
 }

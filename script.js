@@ -1,56 +1,44 @@
 $(function () {
-    var data = [
-        {
-            label: 'Lisa Stewart',
-            value: 'lisa',
-            //img: 'images/lisa.jpg',
-            info: 'lisa@somewhere.com'
-        },
+    $(document).ready(function() {
+        setTimeout(function(){
+            conf = {
+                hidden: '#hidden_inputbox',
+                source: [{
+                        label: 'Lisa Stewart',
+                        value: 'lisa',
+                        //img: 'http://www.gravatar.com/avatar/',
+                        info: 'lisa@somewhere.com'
+                    },
 
-        {
-            label: 'Mike Johnson',
-            value: 'mike',
-            img: 'images/mike.jpg',
-            info: 'mike@somewhere.com'
-        },
+                    {
+                        label: 'Mike Johnson',
+                        value: 'mike',
+                        img: 'http://www.gravatar.com/avatar/',
+                        info: 'mike@somewhere.com'
+                    },
 
-        {
-            label: 'Steve Friedman',
-            value: 'steve',
-            img: 'images/steve.jpg',
-            info: 'steve@somewhere.com'
-        },
-
-        {
-            label: 'Tamara Lu',
-            value: 'tamara',
-            img: 'images/lisa.jpg'
-            //info: 'tamara@somewhere.com'
-        },
-
-        {
-            label: 'Peter McMahon',
-            value: 'peter',
-            img: 'images/mike.jpg',
-            info: 'mike@somewhere.com'
-        },
-        
-        {
-            label: 'Suzanne Karter',
-            value: 'jeneva',
-            img: 'images/lisa.jpg',
-            info: 'suzanne@somewhere.com'
-        }
-    ];
-
-    var autoComplete = $('#auto-complete');
-    autoComplete.autosize();
-    autoComplete.inlinedAutocomplete({
-        hidden : '#hidden_auto-complete',
-        source : data,
-        trigger: '@',
-        width: 240,
-        offsetLeft: 6,
-        offsetTop: 10
+                    {
+                        label: 'Steve Friedman',
+                        value: 'steve',
+                        img: 'http://www.gravatar.com/avatar/',
+                        info: 'steve@somewhere.com'
+                    }],
+                trigger: "@",
+                minLength: 2,
+                maxLength: 25,
+                width: 300
+            }
+            $('#inputbox').inlinedAutocomplete(conf);
+            $('#editable').inlinedAutocomplete(conf);
+            $('#myiframe').contents().find('body#content').inlinedAutocomplete(conf);
+            // we don't want the menu be inside the iframe
+            $('#myiframe').contents().find('body#content').inlinedAutocomplete('option', 'appendTo', '#iframecontainer');
+            // we need to set the the window object of the window object of the iframe
+            // otherwise we could not detect the cursor position
+            $('#myiframe').contents().find('body#content').inlinedAutocomplete('option', 'window', $('#myiframe')[0].contentWindow);
+            // TODO: put this inside inlinedAutocomplete
+            $('#myiframe').contents().find('body#content').inlinedAutocomplete('option', 'offsetLeft', $('#myiframe').offset().left);
+            $('#myiframe').contents().find('body#content').inlinedAutocomplete('option', 'offsetTop', $('#myiframe').offset().top);
+        }, 1000);
     });
 });
